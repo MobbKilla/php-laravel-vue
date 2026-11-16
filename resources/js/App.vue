@@ -1,9 +1,13 @@
 <script setup lang="ts">
-const stack: string[] = ['Laravel', 'Vue 3', 'TypeScript'];
+import { onMounted, ref } from "vue";
+import ShiftTemplates from "./components/ShiftTemplates.vue";
+
 </script>
 
 <template>
-    <main class="flex min-h-screen items-center justify-center">
-        <h1 class="text-2xl font-semibold">{{ stack.join(' + ') }}</h1>
+    <main class="flex flex-col min-h-screen items-center justify-center">
+        <h1 class="text-2xl font-semibold">График смен</h1>
+
+        <ShiftTemplates></ShiftTemplates>
     </main>
 </template>
