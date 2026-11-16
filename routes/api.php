@@ -1,1 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ShiftTemplateController;
+
+Route::apiResource('shift-templates', ShiftTemplateController::class);
