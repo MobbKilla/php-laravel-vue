@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Employee;
+use App\Models\ShiftTemplate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +18,29 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        Employee::factory(15)->create();
+
+        ShiftTemplate::factory()->createMany([
+            [
+                'name' => 'Утро',
+                'start_time' => '06:00:00',
+                'end_time' => '14:00:00',
+            ],
+            [
+                'name' => 'День',
+                'start_time' => '12:00:00',
+                'end_time' => '20:00:00',
+            ],
+            [
+                'name' => 'Вечер',
+                'start_time' => '16:00:00',
+                'end_time' => '00:00:00',
+            ],
         ]);
     }
 }
