@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreShiftTemplateRequest;
 use App\Http\Resources\ShiftTemplateResource;
 use App\Models\ShiftTemplate;
-use Illuminate\Http\Request;
 
 class ShiftTemplateController extends Controller
 {
@@ -20,9 +20,9 @@ class ShiftTemplateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreShiftTemplateRequest $request)
     {
-        $shiftTemplate = ShiftTemplate::create($request->all());
+        $shiftTemplate = ShiftTemplate::create($request->validated());
         return new ShiftTemplateResource($shiftTemplate);
     }
 
@@ -37,9 +37,9 @@ class ShiftTemplateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ShiftTemplate $shiftTemplate)
+    public function update(StoreShiftTemplateRequest $request, ShiftTemplate $shiftTemplate)
     {
-        $shiftTemplate->update($request->all());
+        $shiftTemplate->update($request->validated());
         return new ShiftTemplateResource($shiftTemplate);
     }
 

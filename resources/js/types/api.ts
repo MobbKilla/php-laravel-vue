@@ -19,3 +19,12 @@ export interface IShiftTemplate {
     end_time: TTimeString;
 }
 export type ShiftTemplatePayload = Omit<IShiftTemplate, 'id'>;   // для POST/PATCH
+
+export interface IEmployee {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    position: string;
+}
+export type EmployeePayload = Omit<IEmployee, 'id'>;

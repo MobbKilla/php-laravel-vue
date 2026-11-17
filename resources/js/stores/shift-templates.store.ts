@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
-import { handleApiError, http } from '@/api/http';
-import { fetchShiftTemplates } from '@/api/shiftTemplates';
+import { ApiError, handleApiError, http, ValidationError } from '@/api/http';
+import { fetchShiftTemplates, createShiftTemplate, updateShiftTemplate } from '@/api/shiftTemplates.api';
 import type { IShiftTemplate, IApiCollection, IApiItem } from '@/types/api';
 
 export const useShiftTemplatesStore = defineStore('shift-templates', {
     state: () => ({
         list: [] as IShiftTemplate[],
         loading: false,
-        error: null as string | null,
+        error: null as ApiError | ValidationError | string | null,
     }),
 
     getters: {
@@ -20,13 +20,13 @@ export const useShiftTemplatesStore = defineStore('shift-templates', {
             this.error = null;
 
             try {
-                const { data } = await http.get<IApiCollection<IShiftTemplate>>('/shift-templates');
 
-                this.list = data;
+                this.list = await fetchShiftTemplates();
 
-                return data;
+                return this.list;
             } catch (error: unknown) {
                 this.error = handleApiError(error);
+
                 throw error;
             } finally {
                 this.loading = false;
@@ -38,13 +38,14 @@ export const useShiftTemplatesStore = defineStore('shift-templates', {
             this.error = null;
 
             try {
-                const { data } = await http.post<IApiItem<IShiftTemplate>>('/shift-templates', payload);
+                const data = await createShiftTemplate(payload);
 
                 this.list.unshift(data);
 
                 return data;
             } catch (error: unknown) {
                 this.error = handleApiError(error);
+
                 throw error;
             } finally {
                 this.loading = false;
@@ -56,7 +57,7 @@ export const useShiftTemplatesStore = defineStore('shift-templates', {
             this.error = null;
 
             try {
-                const { data } = await http.patch<IApiItem<IShiftTemplate>>(`/shift-templates/${id}`, payload);
+                const data = await updateShiftTemplate(id, payload);
                 const index = this.list.findIndex((template) => template.id === id);
 
                 if (index !== -1) {
@@ -68,6 +69,7 @@ export const useShiftTemplatesStore = defineStore('shift-templates', {
                 return data;
             } catch (error: unknown) {
                 this.error = handleApiError(error);
+
                 throw error;
             } finally {
                 this.loading = false;
@@ -83,6 +85,7 @@ export const useShiftTemplatesStore = defineStore('shift-templates', {
                 this.list = this.list.filter((template) => template.id !== id);
             } catch (error: unknown) {
                 this.error = handleApiError(error);
+
                 throw error;
             } finally {
                 this.loading = false;

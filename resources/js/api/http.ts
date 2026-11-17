@@ -50,7 +50,15 @@ async function request<T>(method: Method, path: string, body?: unknown, signal?:
     return payload as T;
 }
 
-export function handleApiError(error: unknown): string {
+export function handleApiError(error: unknown): ValidationError | ApiError | string {
+    if (error instanceof ValidationError) {
+        return error;
+    }
+
+    if (error instanceof ApiError) {
+        return error;
+    }
+
     if (error instanceof Error) {
         return error.message;
     }
