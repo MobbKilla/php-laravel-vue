@@ -15,6 +15,24 @@
     --color-template-blue: #bbc9f7;
     --color-template-purple: #c8adff;
     --color-template-mint: #b2eeeb;
+
+    /* Ячейки смен в графике */
+    --color-shift-blue: #e8edfc;
+    --color-shift-blue-foreground: #5b7dec;
+    --color-shift-purple: #e9deff;
+    --color-shift-purple-foreground: #8040ff;
+    --color-shift-mint: #e0f8f7;
+    --color-shift-mint-foreground: #009f98;
+
+    /* Строка «Покрытие» */
+    --color-coverage-empty: #fbe5e5;
+    --color-coverage-empty-foreground: #dc2626;
+    --color-coverage-filled: #ebeffd;
+    --color-coverage-filled-foreground: #1c4ae5;
+
+    --color-row-alt: #f8f9fb;
+    --color-avatar: #e7e8ee;
+    --color-control-active: #3c3c43;
 }
 
 @theme inline {

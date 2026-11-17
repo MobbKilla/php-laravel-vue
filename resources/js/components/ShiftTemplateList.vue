@@ -1,13 +1,9 @@
 <script setup lang="ts">
+import { templateColor } from '@/lib/shift-colors';
 import { formatShiftDuration, formatTime } from '@/lib/time';
 import type { IShiftTemplate } from '@/types/api';
 
 const { list = [] } = defineProps<{ list: IShiftTemplate[] }>();
-
-/** Цвета левой полоски из макета, по кругу. */
-const accentClasses = ['border-l-template-blue', 'border-l-template-purple', 'border-l-template-mint'];
-
-const accentClass = (index: number): string => accentClasses[index % accentClasses.length] ?? '';
 </script>
 
 <template>
@@ -16,7 +12,7 @@ const accentClass = (index: number): string => accentClasses[index % accentClass
             v-for="(template, index) in list"
             :key="template.id"
             class="flex items-start gap-3 rounded-lg border-l-3 bg-muted py-2 pr-2 pl-4"
-            :class="accentClass(index)"
+            :class="templateColor(index).border"
             :title="template.description || undefined"
         >
             <div class="min-w-0 flex-1 text-base leading-6">

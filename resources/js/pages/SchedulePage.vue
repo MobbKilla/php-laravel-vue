@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex flex-1 flex-col gap-6 px-4 py-6 md:px-[30px]">
+    <div class="flex flex-1 flex-col gap-6 px-4 py-6 md:px-[30px] lg:h-svh lg:flex-none">
         <nav class="flex items-center gap-3">
             <button
                 type="button"
@@ -51,13 +51,13 @@ onMounted(() => {
             </div>
         </div>
 
-        <div class="flex flex-1 flex-col gap-2 lg:flex-row">
-            <section class="min-h-[480px] min-w-0 flex-1 overflow-x-auto rounded-xl bg-card p-3">
+        <div class="flex flex-1 flex-col gap-2 lg:min-h-0 lg:flex-row">
+            <section class="h-[600px] min-w-0 flex-1 rounded-xl bg-card p-3 lg:h-auto lg:min-h-0">
                 <ShiftTimeline />
             </section>
 
-            <aside class="w-full shrink-0 lg:w-[335px]">
-                <ShiftTemplates class="h-full" />
+            <aside class="w-full shrink-0 lg:min-h-0 lg:w-[335px]">
+                <ShiftTemplates class="h-full lg:overflow-y-auto" />
             </aside>
         </div>
     </div>

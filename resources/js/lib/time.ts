@@ -7,6 +7,18 @@ export function formatTime(time: TTimeString): string {
     return time.slice(0, 5);
 }
 
+/** '08:00' → '08', '08:30' → '08:30' */
+function formatTimeCompact(time: TTimeString): string {
+    const formatted = formatTime(time);
+
+    return formatted.endsWith(':00') ? formatted.slice(0, 2) : formatted;
+}
+
+/** '08:00', '18:00' → '08 - 18', как в ячейке графика из макета */
+export function formatShiftRange(start: TTimeString, end: TTimeString): string {
+    return `${formatTimeCompact(start)} - ${formatTimeCompact(end)}`;
+}
+
 function toMinutes(time: TTimeString): number {
     const [hours = 0, minutes = 0] = time.split(':').map(Number);
 

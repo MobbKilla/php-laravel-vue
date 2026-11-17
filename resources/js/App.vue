@@ -9,7 +9,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
     <SidebarProvider>
         <AppSidebar />
 
-        <SidebarInset>
+        <SidebarInset class="min-w-0">
             <div class="px-4 pt-4 md:hidden">
                 <SidebarTrigger />
             </div>
